@@ -1,0 +1,6 @@
+[submodule "legacy_data"]
+	path = legacy_data
+	url = https://github.com/Rishardjaf/overfitters.git
+[submodule "current_data"]
+	path = current_data
+	url = https://github.com/Rishardjaf/overfitters_pt2.git
