@@ -21,10 +21,10 @@ During the hackathon the organisers changed the supplied inputs. The revised `tr
 
 The current repository records how this was verified (checked 2026-09-06). Each revised file is identical to its old version once `current_PM2_5` is removed. The check compares row order, column names, parsed types, values, and missing values, and it includes SHA-256 fingerprints and a reproducible script:
 
-- [Dataset release finding](current_data/agent_knowledge/findings/dataset_release.md)
-- [Migration review: what old knowledge still applies](current_data/agent_knowledge/findings/previous_knowledge_review.md)
-- [Causal validation policy](current_data/agent_knowledge/decisions/causal_validation.md)
-- [Agent instructions](current_data/AGENTS.md) and [knowledge index](current_data/agent_knowledge/INDEX.md)
+- [Dataset release finding](https://github.com/Rishardjaf/overfitters_pt2/blob/ee19b06988c9756b5c135881ed4c715cffad4f66/agent_knowledge/findings/dataset_release.md)
+- [Migration review: what old knowledge still applies](https://github.com/Rishardjaf/overfitters_pt2/blob/ee19b06988c9756b5c135881ed4c715cffad4f66/agent_knowledge/findings/previous_knowledge_review.md)
+- [Causal validation policy](https://github.com/Rishardjaf/overfitters_pt2/blob/ee19b06988c9756b5c135881ed4c715cffad4f66/agent_knowledge/decisions/causal_validation.md)
+- [Agent instructions](https://github.com/Rishardjaf/overfitters_pt2/blob/ee19b06988c9756b5c135881ed4c715cffad4f66/AGENTS.md) and [knowledge index](https://github.com/Rishardjaf/overfitters_pt2/blob/ee19b06988c9756b5c135881ed4c715cffad4f66/agent_knowledge/INDEX.md)
 
 ### What the change invalidates
 
@@ -65,25 +65,32 @@ After pulling parent changes that move a pin, run `git submodule update --init -
 
 ## Working in a child repository
 
-Each submodule is a normal, full Git repository with its own history, branches, and pull requests. Submodules check out a specific commit (detached HEAD), so create a branch before making changes:
+Each submodule is a normal, full Git repository with its own history, branches, and pull requests. Submodules check out a specific commit (detached HEAD), so create a branch before making changes. First confirm the submodule has no uncommitted work:
 
 ```bash
 cd current_data
-git switch main
-git pull --ff-only origin main
-git switch -c feat/your_change_name
-# edit, then stage explicit paths and use a Conventional Commit
+git status --short --branch         # must be clean before switching
+git fetch origin main
+git switch -c feat/your_change_name origin/main
+# edit, then stage explicit paths, review git diff --cached, and use a Conventional Commit
+git push --dry-run --set-upstream origin HEAD:refs/heads/feat/your_change_name
 git push --set-upstream origin HEAD:refs/heads/feat/your_change_name
+git rev-parse --abbrev-ref --symbolic-full-name @{upstream}
 ```
 
-Open the pull request in the **child** repository. Follow its own [AGENTS.md](current_data/AGENTS.md) and branch conventions (`type/change_name`, underscores).
+Inspect the dry-run output before running the real push. The destination must be `refs/heads/feat/your_change_name` on the intended remote, never `main` or `master`. After the first push, the last command must print `origin/feat/your_change_name`.
+
+Open the pull request in the **child** repository. Follow its own [AGENTS.md](https://github.com/Rishardjaf/overfitters_pt2/blob/ee19b06988c9756b5c135881ed4c715cffad4f66/AGENTS.md) and branch conventions (`type/change_name`, underscores).
 
 ## Updating the pinned commits
 
 The parent records one exact commit per child (a gitlink). Child pull requests don't update it automatically. Once a child change is merged to that child's `main`:
 
 ```bash
+git status --short --branch         # parent must be clean
+git switch -c chore/update_current_data
 cd current_data
+git status --short --branch         # submodule must be clean
 git fetch origin main
 git switch --detach origin/main
 cd ..
