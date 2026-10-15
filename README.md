@@ -41,24 +41,24 @@ Some general policies still apply: the station-hour grain, the no-lookahead rule
 
 ## Clone
 
-> **Placeholder:** this parent repository is **not yet hosted**. `<PARENT_REPO_URL>` below stands for its future URL. It does not exist yet.
-
 ```bash
-git clone --recurse-submodules <PARENT_REPO_URL> overfitters_project
+git clone --recurse-submodules https://github.com/Rishardjaf/overfitters_project.git overfitters_project
 ```
 
-**Access:** `legacy_data` is a private repository, so a recursive clone needs a GitHub account with read access to `Rishardjaf/overfitters`. Without it, the `legacy_data` step fails. `current_data` is public. The parent therefore effectively needs private access.
+**Access:** this parent repository and `current_data` are **public**. `legacy_data` is a **private** repository. Initializing it requires a GitHub account with read access to `Rishardjaf/overfitters`. Without that access, the recursive clone fails at the `legacy_data` step.
 
-If you cloned without `--recurse-submodules`:
+Without access to the private repository, clone the parent and initialize only the current release:
+
+```bash
+git clone https://github.com/Rishardjaf/overfitters_project.git overfitters_project
+cd overfitters_project
+git submodule update --init current_data
+```
+
+If you have access and cloned without `--recurse-submodules`:
 
 ```bash
 git submodule update --init --recursive
-```
-
-To get only the current release:
-
-```bash
-git submodule update --init current_data
 ```
 
 After pulling parent changes that move a pin, run `git submodule update --init --recursive` again. This checks out the newly pinned commits.
