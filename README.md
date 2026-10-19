@@ -24,16 +24,6 @@ The project work was done by:
 - [@nishywishy666](https://github.com/nishywishy666)
 - [Keith Andre (@KeithAndre26)](https://github.com/KeithAndre26)
 
-Default-branch commit counts per child repository, from the GitHub contributors API on 2026-10-19:
-
-| Repository | Contributors | Graph |
-| --- | --- | --- |
-| `current_data` (overfitters_pt2) | eimirjihad 3, Rishardjaf 1 | [Contributors](https://github.com/Rishardjaf/overfitters_pt2/graphs/contributors) |
-| `legacy_data` (overfitters) | nishywishy666 7, eimirjihad 5, Rishardjaf 3 | [Contributors](https://github.com/Rishardjaf/overfitters/graphs/contributors) (private; requires access) |
-
-GitHub's contributor graph for this parent repository counts only commits made in the parent itself. These commits add docs, `.gitmodules`, and submodule pins. A submodule pin records a child commit ID but does not import the child's history. The child graphs reflect their default-branch histories; work present only on other branches can be absent there too.
-
-Keith Andre's work is recorded on the newer repository's other branches: [the Full project commit](https://github.com/Rishardjaf/overfitters_pt2/commit/96687d0cec8c421e1933af6edddf3358a4bc1ce4) and [the Final submission commit](https://github.com/Rishardjaf/overfitters_pt2/commit/eb86d6f0997b8fa3e04378e75d366e7c4a0436eb). Those commits are credited to @KeithAndre26 and are not contained in the pinned main history. The team list above includes this work even though it is absent from the default-branch counts.
 
 ## Why there are two repositories
 
