@@ -15,6 +15,23 @@ overfitters_project/
 └── legacy_data/      HISTORICAL: original inputs, old EDA, models, and scores
 ```
 
+## Team contributors
+
+The project work was done by:
+
+- [@Rishardjaf](https://github.com/Rishardjaf)
+- [@eimirjihad](https://github.com/eimirjihad)
+- [@nishywishy666](https://github.com/nishywishy666)
+
+Commit counts per child repository, from the GitHub contributors API on 2026-10-19:
+
+| Repository | Contributors | Graph |
+| --- | --- | --- |
+| `current_data` (overfitters_pt2) | eimirjihad 3, Rishardjaf 1 | [Contributors](https://github.com/Rishardjaf/overfitters_pt2/graphs/contributors) |
+| `legacy_data` (overfitters) | nishywishy666 7, eimirjihad 5, Rishardjaf 3 | [Contributors](https://github.com/Rishardjaf/overfitters/graphs/contributors) (private; requires access) |
+
+GitHub's contributor graph for this parent repository counts only commits made in the parent itself. These commits add docs, `.gitmodules`, and submodule pins. A submodule pin records a child commit ID but does not import the child's history. As a result, the team's work appears in each child repository's graph, not in this parent's graph.
+
 ## Why there are two repositories
 
 During the hackathon the organisers changed the supplied inputs. The revised `train.csv` and `test.csv` **removed the `current_PM2_5` input column**. The target `PM2_5_next_hour` is still in the training data. The 12 stations, row IDs, timestamps, and all other columns are unchanged.
